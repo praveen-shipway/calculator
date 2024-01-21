@@ -31,7 +31,10 @@ let display = document.getElementById('display');
 let clear = document.getElementById('clear');
 
 numbers.addEventListener('click', function (e) {
-	if (display.textContent == '0') {
+	if (e.target.tagName === 'DIV') {
+		return;
+	}
+	if (display.textContent == '0' || num1) {
 		display.textContent = e.target.textContent;
 	} else {
 		display.textContent += e.target.textContent;
@@ -39,15 +42,19 @@ numbers.addEventListener('click', function (e) {
 });
 
 operator.addEventListener('click', function (e) {
+	if (e.target.tagName === 'DIV') {
+		return;
+	}
 	if (e.target.textContent == '=') {
 		num2 = display.textContent;
 		display.textContent = operate(op, +num1, +num2);
+		num1 = num2 = op = null;
 	} else {
 		if (op) {
 			num2 = display.textContent;
 			num1 = operate(op, +num1, +num2);
 			op = e.target.textContent;
-			display.textContent = '';
+			display.textContent = num1;
 
 		} else {
 			num1 = display.textContent;
