@@ -33,6 +33,20 @@ let display = document.getElementById('display');
 let clear = document.getElementById('clear');
 let deleteBtn = document.getElementById('delete');
 
+document.addEventListener('keyup', function (e) {
+	let clickEvent = new Event('click', {bubbles:true});
+
+	if (['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'].includes(e.key)) {
+		let numberBtn = Array.from(numbers.querySelectorAll('button')).find(number => (number.textContent === e.key) ? true : false);
+		numberBtn.dispatchEvent(clickEvent);
+	} else if (['+', '-', '*', '/', '='].includes(e.key)) {
+		let opBtn = Array.from(operator.querySelectorAll('button')).find(op => (op.textContent === e.key) ? true : false);
+		opBtn.dispatchEvent(clickEvent);
+	} else if (['Backspace'].includes(e.key)) {
+		deleteBtn.dispatchEvent(clickEvent);
+	}
+});
+
 numbers.addEventListener('click', function (e) {
 	if (e.target.tagName === 'DIV') {
 		return;
