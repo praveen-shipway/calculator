@@ -43,12 +43,21 @@ operator.addEventListener('click', function (e) {
 		num2 = display.textContent;
 		display.textContent = operate(op, +num1, +num2);
 	} else {
-		num1 = display.textContent;
-		op = e.target.textContent;
-		display.textContent = '';
+		if (op) {
+			num2 = display.textContent;
+			num1 = operate(op, +num1, +num2);
+			op = e.target.textContent;
+			display.textContent = '';
+
+		} else {
+			num1 = display.textContent;
+			op = e.target.textContent;
+			display.textContent = '';
+		}
 	}
 });
 
 clear.addEventListener('click', function (e) {
 	display.textContent = '0';
+	num1 = num2 = op = null;
 });
