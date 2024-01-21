@@ -24,3 +24,31 @@ function operate(operator, num1, num2) {
 }
 
 let num1, op, num2;
+
+let numbers = document.getElementById('numbers');
+let operator = document.getElementById('operator');
+let display = document.getElementById('display');
+let clear = document.getElementById('clear');
+
+numbers.addEventListener('click', function (e) {
+	if (display.textContent == '0') {
+		display.textContent = e.target.textContent;
+	} else {
+		display.textContent += e.target.textContent;
+	}
+});
+
+operator.addEventListener('click', function (e) {
+	if (e.target.textContent == '=') {
+		num2 = display.textContent;
+		display.textContent = operate(op, +num1, +num2);
+	} else {
+		num1 = display.textContent;
+		op = e.target.textContent;
+		display.textContent = '';
+	}
+});
+
+clear.addEventListener('click', function (e) {
+	display.textContent = '0';
+});
