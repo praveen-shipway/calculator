@@ -41,6 +41,12 @@ numbers.addEventListener('click', function (e) {
 	} else {
 		display.textContent += e.target.textContent;
 	}
+	let numberDot = Array.from(numbers.querySelectorAll('button')).find(number => (number.textContent === '.') ? true : false);
+	if (display.textContent.includes('.')) {
+		numberDot.setAttribute('disabled', true);
+	} else {
+		numberDot.removeAttribute('disabled');
+	}
 });
 
 operator.addEventListener('click', function (e) {
