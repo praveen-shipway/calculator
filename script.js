@@ -31,6 +31,7 @@ let numbers = document.getElementById('numbers');
 let operator = document.getElementById('operator');
 let display = document.getElementById('display');
 let clear = document.getElementById('clear');
+let deleteBtn = document.getElementById('delete');
 
 numbers.addEventListener('click', function (e) {
 	if (e.target.tagName === 'DIV') {
@@ -75,4 +76,13 @@ operator.addEventListener('click', function (e) {
 clear.addEventListener('click', function (e) {
 	display.textContent = '0';
 	num1 = num2 = op = null;
+});
+
+deleteBtn.addEventListener('click', function (e) {
+	let currentDisplay = display.textContent;
+	if (currentDisplay.length === 1) {
+		display.textContent = '0';
+	} else {	
+		display.textContent = currentDisplay.slice(0, currentDisplay.length - 1);
+	}
 });
