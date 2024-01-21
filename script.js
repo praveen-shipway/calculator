@@ -12,15 +12,17 @@ function divide(a, b) {
 }
 
 function operate(operator, num1, num2) {
+	let result;
 	if (operator == '+') {
-		return add(num1, num2);
+		result = add(num1, num2);
 	} else if (operator == '-') {
-		return subtract(num1, num2);
+		result = subtract(num1, num2);
 	} else if (operator == '*') {
-		return multiply(num1, num2);
+		result = multiply(num1, num2);
 	} else if (operator == '/') {
-		return divide(num1, num2);
+		result = divide(num1, num2);
 	}
+	return Math.round(result * 100) / 100;
 }
 
 let num1, op, num2;
